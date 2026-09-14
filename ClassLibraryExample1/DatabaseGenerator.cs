@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryExample1
 {
-    internal class DatabaseGenerator
+    public class DatabaseGenerator
     {
         int currentpin, currentaccountnumber, currentbalance;
         String currentrandomfirstName, currentrandomlastName;
