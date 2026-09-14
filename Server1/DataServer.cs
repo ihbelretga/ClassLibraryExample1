@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.ServiceModel;
 using ClassLibraryExample1;
+//using ClassLibraryExample1.DatabaseClass; 
 
 namespace Server1
 {
@@ -17,15 +18,18 @@ namespace Server1
         public DataServer() { }
         public int GetNumEntries()
         {
-            //int getNumEntries = 0;
+            //heres the thing, is this supposed to be get num entries or get num records? i feel so confused? 
+            int getNumEntries = 0;
             ClassLibraryExample1.DatabaseClass db = new ClassLibraryExample1.DatabaseClass();
-            db.GetNumEntries();
+            getNumEntries = db.GetNumRecords();
+            return getNumEntries;
         }
 
         public void GetvaluesForEntry(int index, out uint acctNo, out uint pin, out int balance, out string fName, out string lName)
         {
 
             ClassLibraryExample1.DatabaseClass db = new ClassLibraryExample1.DatabaseClass();
+
             db.GetValuesForEntry(index, out acctNo, out pin, out balance, out fName, out lName);
             //acctNo = 0;
             //pin = 0;
@@ -37,7 +41,7 @@ namespace Server1
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the server");
-            //ServiceHost host;
+            ServiceHost Host;
 
             NetTcpBinding binding = new NetTcpBinding();
             Host = new ServiceHost(typeof(DataServer));
