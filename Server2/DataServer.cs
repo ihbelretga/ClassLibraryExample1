@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.ComponentModel;
+﻿using Server1;
+using Server1.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel;
-using System.ServiceModel.Security.Tokens;
-using ClassLibraryExample1;
-//using ClassLibraryExample1.DatabaseClass; 
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Server1
+namespace Server2
 {
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false)]
-    internal class DataServer : Services.DataServerInterface
+    internal class DataServer : DataServerInterface
     {
-        
+
         private readonly ClassLibraryExample1.DatabaseClass db = new ClassLibraryExample1.DatabaseClass();
         public DataServer() { }
         public int GetNumEntries()
@@ -25,7 +26,7 @@ namespace Server1
         public void GetvaluesForEntry(int index, out uint acctNo, out uint pin, out int balance, out string fName, out string lName)
         {
 
-            if(index < 0 || index >= db.GetNumRecords())
+            if (index < 0 || index >= db.GetNumRecords())
             {
                 throw new FaultException<IndexOutOfRangeFault>(
                     new IndexOutOfRangeFault { Issue = $"Index {index} is out of range." });
@@ -34,7 +35,7 @@ namespace Server1
             acctNo = db.GetAccountNoByIndex(index);
             pin = db.GetPinByIndex(index);
             balance = db.GetBalanceByIndex(index);
-            fName = db.GetFirstNameByIndex(index); 
+            fName = db.GetFirstNameByIndex(index);
             lName = db.GetLastNameByIndex(index);
         }
 

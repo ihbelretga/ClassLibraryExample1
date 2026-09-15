@@ -8,7 +8,7 @@ namespace ClassLibraryExample1
 {
     public class DatabaseClass
     {
-        List<DataStruct> dataStruct;
+         List<DataStruct> dataStruct;
         DataStruct dataStruct1 = new DataStruct();
         DataStruct dataStruct2 = new DataStruct();
         DataStruct dataStruct3 = new DataStruct();
@@ -58,7 +58,7 @@ namespace ClassLibraryExample1
             {
                 if (i == index)
                 {
-                    pinNo = dataStruct[i].acctNo;
+                    pinNo = dataStruct[i].pin;
                 }
             }
 

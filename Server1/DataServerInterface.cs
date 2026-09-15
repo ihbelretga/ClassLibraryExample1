@@ -4,7 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using ClassLibraryExample1.DatabaseGenerator;
+//using ClassLibraryExample1.DatabaseGenerator;
 
 namespace Server1.Services
 {
@@ -15,6 +15,7 @@ namespace Server1.Services
         int GetNumEntries(); 
 
         [OperationContract]
+        [FaultContract(typeof(IndexOutOfRangeFault))]
         void GetvaluesForEntry(int index, out uint acctNo, out uint pin, out int balance, out string fName, out string lName);
     }
 }

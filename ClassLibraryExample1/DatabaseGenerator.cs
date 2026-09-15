@@ -47,11 +47,11 @@ namespace ClassLibraryExample1
 
         public void GetNextAccount(out uint pin, out uint accountnumber, out string randomfirstname, out string randomlastname, out int balance)
         {
-            pin = (uint)currentpin;
-            accountnumber = (uint)currentaccountnumber;
-            randomfirstname = currentrandomfirstName;
-            randomlastname = currentrandomlastName;
-            balance = currentbalance;
+            pin = GetPIN();
+            accountnumber = GetAcctNo();
+            randomfirstname = GetFirstname();
+            randomlastname = GetLastname();
+            balance = GetBalance();
         }
     }
 }
