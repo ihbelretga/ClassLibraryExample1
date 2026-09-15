@@ -58,5 +58,10 @@ namespace Client
                 MessageBox.Show($"Exception: {ex.Message}");
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

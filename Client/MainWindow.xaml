@@ -9,7 +9,7 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="34,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="71"><Run Language="en-au" Text="Total items: "/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="34,65,0,0" TextWrapping="Wrap" Text="Index" VerticalAlignment="Top"/>
-        <Button Content="Go" HorizontalAlignment="Left" Margin="109,85,0,0" VerticalAlignment="Top" Width="58"/>
+        <Button Content="Go" HorizontalAlignment="Left" Margin="109,85,0,0" VerticalAlignment="Top" Width="58" Click="GoButton_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="19"><Run Language="en-au" Text="First name; "/><LineBreak/><Run Language="en-au"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="34,157,0,0" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,191,0,0" TextWrapping="Wrap" Text="AcctNo" VerticalAlignment="Top"/>
