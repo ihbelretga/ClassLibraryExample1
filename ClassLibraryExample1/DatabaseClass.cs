@@ -1,39 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.ServiceModel;
 
 namespace ClassLibraryExample1
 {
+    //[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false)]
     public class DatabaseClass
     {
-         List<DataStruct> dataStruct;
-        DataStruct dataStruct1 = new DataStruct();
-        DataStruct dataStruct2 = new DataStruct();
-        DataStruct dataStruct3 = new DataStruct();
-        DataStruct dataStruct4 = new DataStruct();
-        DataStruct dataStruct5 = new DataStruct();
-        DataStruct dataStruct6 = new DataStruct();
-        DataStruct dataStruct7 = new DataStruct();
-        DataStruct dataStruct8 = new DataStruct();
-        DataStruct dataStruct9 = new DataStruct();
-        DataStruct dataStruct10 = new DataStruct();
+        private readonly List<DataStruct> dataStruct;
+        //private readonly DatabaseClass _db = DatabaseClass.Instance; 
+
+        public static DatabaseClass Instance { get; } = new DatabaseClass();
 
         //load the list with a bunch of entries however way u want to 
-        public DatabaseClass()
+        private DatabaseClass()
         {
             dataStruct = new List<ClassLibraryExample1.DataStruct>();
-            dataStruct.Add(dataStruct1);
-            dataStruct.Add(dataStruct2);
-            dataStruct.Add(dataStruct3);
-            dataStruct.Add(dataStruct4);
-            dataStruct.Add(dataStruct5);
-            dataStruct.Add(dataStruct6);
-            dataStruct.Add(dataStruct7);
-            dataStruct.Add(dataStruct8);
-            dataStruct.Add(dataStruct9);
-            dataStruct.Add(dataStruct10);
+            var gen = new DatabaseGenerator();
+            for (int i = 0; i < 100000; i++)
+            {
+                var record = new DataStruct(); 
+                gen.GetNextAccount(out record.pin, out record.acctNo, out record.firstname, out record.lastname, out record.balance);
+
+                dataStruct.Add(record);
+            } 
+          
         }
 
         //implement the following functions as well 
@@ -117,5 +112,24 @@ namespace ClassLibraryExample1
 
             return numRecords;
         }   
+
+        public String getlastname(String name)
+        {
+            String lastname = "null";
+            for (int i = 0; i < dataStruct.Count; i++)
+            {
+                if(dataStruct[i].lastname == null)
+                {
+                    throw new NullReferenceException("Reference is null"); 
+                }else { 
+                    if (dataStruct[i].lastname == name)
+                    {
+                        lastname = dataStruct[i].lastname;
+                    }
+                }
+            }
+
+            return lastname;
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace Server1
     {
         
         private readonly ClassLibraryExample1.DatabaseClass db = new ClassLibraryExample1.DatabaseClass();
+        private readonly DatabaseClass _db = DatabaseClass.Instance; 
         public DataServer() { }
         public int GetNumEntries()
         {
@@ -38,5 +39,12 @@ namespace Server1
             lName = db.GetLastNameByIndex(index);
         }
 
+        public string collectlastname(String name)
+        {
+            String lastname; 
+            lastname = db.getlastname(name);
+
+            return lastname;
+        }
     }
 }

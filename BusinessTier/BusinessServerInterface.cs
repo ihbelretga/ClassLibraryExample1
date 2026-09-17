@@ -1,22 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-//using ClassLibraryExample1.DatabaseGenerator;
+using System.ServiceModel;
+using System.Runtime.InteropServices;
+using System.Data;
+using Server1;
 
-namespace Server1.Services
+
+
+namespace BusinessTier
 {
     [ServiceContract]
-    public interface DataServerInterface
+    public interface BusinessServerInterface
     {
-        [OperationContract]
-        int GetNumEntries(); 
-
         [OperationContract]
         [FaultContract(typeof(IndexOutOfRangeFault))]
         void GetvaluesForEntry(int index, out uint acctNo, out uint pin, out int balance, out string fName, out string lName);
+
+
+        //this is just a random function to test out operation contract 
+        [OperationContract]
+        int GetNumEntries();
 
         [OperationContract]
         String collectlastname(String name); 

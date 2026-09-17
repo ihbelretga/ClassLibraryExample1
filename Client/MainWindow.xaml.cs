@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Server1;
+using BusinessTier; 
 
 namespace Client
 {
@@ -26,13 +27,14 @@ namespace Client
     public partial class MainWindow : Window
     {
         private readonly Server1.Services.DataServerInterface server;
+        private readonly BusinessTier.BusinessServerInterface businessserver; 
         public MainWindow()
         {
             InitializeComponent();
 
             var tcp = new NetTcpBinding();
-            var factory = new ChannelFactory<Server1.Services.DataServerInterface>(tcp, new EndpointAddress("net.tcp://localhost:8000/DataServer"));
-            server = factory.CreateChannel();
+            var factory = new ChannelFactory<BusinessTier.BusinessServerInterface>(tcp, new EndpointAddress("net.tcp://localhost:8000/DataServer"));
+            businessserver = factory.CreateChannel();
 
             Total_Items_Label.Content = server.GetNumEntries().ToString();
         }
@@ -42,7 +44,7 @@ namespace Client
             try
             {
                 int index = int.Parse(Index_.Text);
-                server.GetvaluesForEntry(index, out uint acctNo, out uint pin, out int balance, out string fName, out string lName);
+                businessserver.GetvaluesForEntry(index, out uint acctNo, out uint pin, out int balance, out string fName, out string lName);
                 First_name.Text = fName;
                 Last_Name.Text = lName;
                 AcctNo.Text = acctNo.ToString();
@@ -59,9 +61,18 @@ namespace Client
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Search_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            String entername= "input"; 
+            try
+            {
+                inputhere.Text = entername; 
+                getlastnametextbox.Text = businessserver.collectlastname(entername);
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show( ex.Message ); 
+            }
         }
     }
 }

@@ -96,6 +96,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessTier\BusinessTier.csproj">
+      <Project>{4b10a387-9edb-4547-b595-e7b014ba1dbe}</Project>
+      <Name>BusinessTier</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Server1\Interface.csproj">
       <Project>{3ad55c2a-626f-4c0d-b335-ae2bef8bc77c}</Project>
       <Name>Interface</Name>

@@ -52,6 +52,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessTier\BusinessTier.csproj">
+      <Project>{4b10a387-9edb-4547-b595-e7b014ba1dbe}</Project>
+      <Name>BusinessTier</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassLibraryExample1\ClassLibraryExample1.csproj">
       <Project>{937b9a88-3e0b-4366-ba70-606471aff245}</Project>
       <Name>ClassLibraryExample1</Name>
