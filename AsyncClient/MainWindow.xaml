@@ -1,0 +1,31 @@
+﻿<Window x:Class="AsyncClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AsyncClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBlock x:Name="TotalItems" Height="17" Margin="26,57,688,0" TextWrapping="Wrap" Text="TotalItems" VerticalAlignment="Top" Width="85"/>
+        <TextBlock x:Name="Index" HorizontalAlignment="Left" Height="23" Margin="40,91,0,0" TextWrapping="Wrap" Text="Index" VerticalAlignment="Top" Width="58"/>
+        <TextBlock x:Name="FirstName" HorizontalAlignment="Left" Height="23" Margin="40,154,0,0" TextWrapping="Wrap" Text="FirstName" VerticalAlignment="Top" Width="58"/>
+        <TextBlock x:Name="LastName" HorizontalAlignment="Left" Height="23" Margin="40,204,0,0" TextWrapping="Wrap" Text="LastName" VerticalAlignment="Top" Width="58"/>
+        <TextBlock x:Name="AcctNo" HorizontalAlignment="Left" Height="23" Margin="40,250,0,0" TextWrapping="Wrap" Text="AcctNo" VerticalAlignment="Top" Width="58"/>
+        <TextBlock x:Name="Balance" HorizontalAlignment="Left" Height="23" Margin="40,295,0,0" TextWrapping="Wrap" Text="Balance" VerticalAlignment="Top" Width="58"/>
+        <TextBox x:Name="outputtotalitems" HorizontalAlignment="Left" Height="29" Margin="130,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="outputindex" HorizontalAlignment="Left" Height="23" Margin="130,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="outputfirstname" HorizontalAlignment="Left" Height="23" Margin="130,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="outputlastname" HorizontalAlignment="Left" Height="23" Margin="130,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="outputacctno" HorizontalAlignment="Left" Height="23" Margin="130,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="outputbalance" HorizontalAlignment="Left" Height="23" Margin="130,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
+        <Button x:Name="GoButtonCLick" Content="GO" HorizontalAlignment="Left" Height="22" Margin="209,124,0,0" VerticalAlignment="Top" Width="59" Click="GoButtonCLick_Click"/>
+        <ProgressBar x:Name="ProgressBar" HorizontalAlignment="Left" Height="32" Margin="316,306,0,0" VerticalAlignment="Top" Width="311"/>
+        <TextBlock x:Name="SearchList" HorizontalAlignment="Left" Height="23" Margin="332,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Text="SearchList"/>
+        <TextBox x:Name="inputlastnamesearch" HorizontalAlignment="Left" Height="23" Margin="472,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
+        <TextBlock x:Name="outputlastname2" HorizontalAlignment="Left" Height="12" Margin="332,102,0,0" TextWrapping="Wrap" Text="outputlastname" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="outputlastname1" HorizontalAlignment="Left" Height="16" Margin="472,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
+        <Button x:Name="SearchButtonClick" Content="Search" HorizontalAlignment="Left" Height="34" Margin="606,132,0,0" VerticalAlignment="Top" Width="50" Click="SearchButtonCLick"/>
+
+    </Grid>
+</Window>
