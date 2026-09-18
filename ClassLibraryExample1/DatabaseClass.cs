@@ -17,7 +17,7 @@ namespace ClassLibraryExample1
         public static DatabaseClass Instance { get; } = new DatabaseClass();
 
         //load the list with a bunch of entries however way u want to 
-        private DatabaseClass()
+        public DatabaseClass()
         {
             dataStruct = new List<ClassLibraryExample1.DataStruct>();
             var gen = new DatabaseGenerator();

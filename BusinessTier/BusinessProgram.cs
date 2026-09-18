@@ -16,7 +16,7 @@ namespace BusinessTier
 
             NetTcpBinding binding = new NetTcpBinding();
             BusinessHost = new ServiceHost(typeof(BusinessServer));
-            BusinessHost.AddServiceEndpoint(typeof(BusinessServerInterface), binding, "net.tcp://localhost:8100/DataServer");
+            BusinessHost.AddServiceEndpoint(typeof(BusinessServerInterface), binding, "net.tcp://localhost:8200/BusinessServer");
             BusinessHost.Open();
             Console.WriteLine("System Online");
             Console.ReadLine();

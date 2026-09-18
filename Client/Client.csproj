@@ -100,9 +100,17 @@
       <Project>{4b10a387-9edb-4547-b595-e7b014ba1dbe}</Project>
       <Name>BusinessTier</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ClassLibraryExample1\ClassLibraryExample1.csproj">
+      <Project>{937b9a88-3e0b-4366-ba70-606471aff245}</Project>
+      <Name>ClassLibraryExample1</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Server1\Interface.csproj">
       <Project>{3ad55c2a-626f-4c0d-b335-ae2bef8bc77c}</Project>
       <Name>Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server2\Server2.csproj">
+      <Project>{61fcb91f-dd75-4501-bd3e-72baeba600c5}</Project>
+      <Name>Server2</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

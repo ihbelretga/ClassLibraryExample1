@@ -1,4 +1,5 @@
-﻿using Server1;
+﻿using ClassLibraryExample1;
+using Server1;
 using Server1.Services;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Server2
     {
 
         private readonly ClassLibraryExample1.DatabaseClass db = new ClassLibraryExample1.DatabaseClass();
+        private readonly DatabaseClass _db = DatabaseClass.Instance;
         public DataServer() { }
         public int GetNumEntries()
         {
@@ -39,5 +41,12 @@ namespace Server2
             lName = db.GetLastNameByIndex(index);
         }
 
+        public string collectlastname(String name)
+        {
+            String lastname;
+            lastname = db.getlastname(name);
+
+            return lastname;
+        }
     }
 }

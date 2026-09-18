@@ -19,7 +19,7 @@ namespace Server2
 
             NetTcpBinding binding = new NetTcpBinding();
             Host = new ServiceHost(typeof(DataServer));
-            Host.AddServiceEndpoint(typeof(DataServerInterface), binding, "net.tcp://localhost:8000/DataServer");
+            Host.AddServiceEndpoint(typeof(DataServerInterface), binding, "net.tcp://localhost:8100/DataServer");
             Host.Open();
             Console.WriteLine("System Online");
             Console.ReadLine();

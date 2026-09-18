@@ -16,7 +16,7 @@ namespace BusinessTier
         BusinessServer()
         {
             var tcp = new NetTcpBinding();
-            var factory = new ChannelFactory<Server1.Services.DataServerInterface>(tcp, new EndpointAddress("net.tcp://localhost:8100/BusinessServer"));
+            var factory = new ChannelFactory<Server1.Services.DataServerInterface>(tcp, new EndpointAddress("net.tcp://localhost:8100/DataServer"));
             servers = factory.CreateChannel(); 
         }
 

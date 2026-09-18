@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Server1;
+using Server1.Services;
 using BusinessTier; 
 
 namespace Client
@@ -26,17 +27,23 @@ namespace Client
 
     public partial class MainWindow : Window
     {
-        private readonly Server1.Services.DataServerInterface server;
-        private readonly BusinessTier.BusinessServerInterface businessserver; 
+        private readonly BusinessServerInterface server; 
+        
         public MainWindow()
         {
             InitializeComponent();
+            try
+            {
+                var tcp = new NetTcpBinding();
+                var factory = new ChannelFactory<BusinessServerInterface>(tcp, new EndpointAddress("net.tcp://localhost:8200/BusinessServer"));
+                server = factory.CreateChannel();
 
-            var tcp = new NetTcpBinding();
-            var factory = new ChannelFactory<BusinessTier.BusinessServerInterface>(tcp, new EndpointAddress("net.tcp://localhost:8000/DataServer"));
-            businessserver = factory.CreateChannel();
-
-            Total_Items_Label.Content = server.GetNumEntries().ToString();
+                Total_Items_Label.Content = server.GetNumEntries().ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error when connecting: " + ex.Message);
+            }
         }
 
         private void GoButton_Click(object sender, RoutedEventArgs e)
@@ -44,7 +51,7 @@ namespace Client
             try
             {
                 int index = int.Parse(Index_.Text);
-                businessserver.GetvaluesForEntry(index, out uint acctNo, out uint pin, out int balance, out string fName, out string lName);
+                server.GetvaluesForEntry(index, out uint acctNo, out uint pin, out int balance, out string fName, out string lName);
                 First_name.Text = fName;
                 Last_Name.Text = lName;
                 AcctNo.Text = acctNo.ToString();
@@ -67,7 +74,7 @@ namespace Client
             try
             {
                 inputhere.Text = entername; 
-                getlastnametextbox.Text = businessserver.collectlastname(entername);
+                getlastnametextbox.Text = server.collectlastname(entername);
             }
             catch (NullReferenceException ex)
             {

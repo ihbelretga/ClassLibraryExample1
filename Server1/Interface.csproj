@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataServer.cs" />
     <Compile Include="DataServerInterface.cs" />
     <Compile Include="IndexOutOfRangeFault.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
