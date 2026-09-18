@@ -1,69 +1,129 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using BusinessTier; 
-
+using BusinessTier;
 namespace AsyncClient
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    /// //delcaring the delegate 
-    public delegate String collectlastname(String name); 
     public partial class MainWindow : Window
     {
-        //declaring the delegate object 
-        getlastname collectlastname;
-        private readonly BusinessServerInterface serverInterface; 
-        IAsyncResult result;
-        String stringresult; 
+        private readonly BusinessServerInterface serverInterface;
         public MainWindow()
         {
             InitializeComponent();
             try
             {
-                var asynctcp = new NetTcpBinding();
-                var factory = new ChannelFactory<BusinessServerInterface>(asynctcp, new EndpointAddress("net.tcp://localhost:8200/BusinessServer"));
+                // Create NetTcp binding
+                NetTcpBinding binding = new NetTcpBinding();
+                // Create channel factory
+                ChannelFactory<BusinessServerInterface> factory =
+                    new ChannelFactory<BusinessServerInterface>(
+                        binding,
+                        new EndpointAddress(
+                            "net.tcp://localhost:8200/BusinessServer"
+                        )
+                    );
+                // Create connection to the Business Server
                 serverInterface = factory.CreateChannel();
-
-                outputtotalitems.Text = serverInterface.GetNumEntries().ToString();
+                // Load the number of entries when the client starts
+                LoadTotalItems();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("errorshowing the message" + ex.Message); 
+                MessageBox.Show(
+                    "Error connecting to the server:\n" + ex.Message,
+                    "Connection Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
             }
         }
-
-        private void GoButtonCLick_Click(object sender, RoutedEventArgs e) 
+        /// <summary>
+        /// Loads the total number of database entries.
+        /// </summary>
+        private async void LoadTotalItems()
         {
-            //in this part of the code we are goingt o try and create a thread reference to a delgate and see if it works with get lastname() 
-            //declaring the delegate object 
-            String name = "null";
-            collectlastname = serverInterface.collectlastname;
-
-            result = collectlastname.BeginInvoke(name, null, stringresult); 
-            stringresult = collectlastname.EndInvoke(result);
-
-            result.AsyncWaitHandle.Close(); 
-            //intialising it with the database object 
+            try
+            {
+                int totalItems = await Task.Run(() =>
+                    serverInterface.GetNumEntries()
+                );
+                outputtotalitems.Text = totalItems.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error getting total number of entries:\n" + ex.Message,
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+            }
         }
-
-        private void SearchButtonCLick(object sender, RoutedEventArgs e) 
+        /// <summary>
+        /// Called when the Go button is clicked.
+        /// </summary>
+        private async void GoButtonCLick_Click(
+            object sender,
+            RoutedEventArgs e)
         {
-
+            try
+            {
+                // Example input
+                string name = "null";
+                // Disable button while operation is running
+                GoButtonCLick.IsEnabled = false;
+                // Call server method asynchronously
+                string result = await Task.Run(() =>
+                    serverInterface.collectlastname(name)
+                );
+                // Display the returned value
+                MessageBox.Show(
+                    result,
+                    "Result",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
+                // Example:
+                // outputlastname.Text = result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error calling collectlastname:\n" + ex.Message,
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+            }
+            finally
+            {
+                GoButtonCLick.IsEnabled = true;
+            }
         }
-
+        /// <summary>
+        /// Called when the Search button is clicked.
+        /// </summary>
+        private async void SearchButtonCLick(
+            object sender,
+            RoutedEventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Search error:\n" + ex.Message,
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+            }
+        }
     }
 }
