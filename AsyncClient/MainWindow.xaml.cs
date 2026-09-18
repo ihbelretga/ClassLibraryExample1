@@ -1,8 +1,9 @@
-﻿using System;
+﻿using BusinessTier;
+using System;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
-using BusinessTier;
+using System.Xml.Linq;
 namespace AsyncClient
 {
     /// <summary>
@@ -73,7 +74,7 @@ namespace AsyncClient
             try
             {
                 // Example input
-                string name = "null";
+                string name = outputindex.Text;
                 // Disable button while operation is running
                 GoButtonCLick.IsEnabled = false;
                 // Call server method asynchronously
@@ -88,7 +89,14 @@ namespace AsyncClient
                     MessageBoxImage.Information
                 );
                 // Example:
-                // outputlastname.Text = result;
+                int index = int.Parse(outputindex.Text);
+                serverInterface.GetvaluesForEntry(index, out uint acctNo, out uint pinNo, out int balance, out string fName, out string lname);
+                outputfirstname.Text = fName;
+                outputlastname.Text = lname;
+                outputacctno.Text = acctNo.ToString();
+                outputbalance.Text = balance.ToString();
+
+
             }
             catch (Exception ex)
             {
@@ -113,7 +121,15 @@ namespace AsyncClient
         {
             try
             {
-                
+                String search = inputlastnamesearch.Text;
+                SearchButtonClick.IsEnabled = false;
+
+                String Result = await Task.Run(() =>
+                    serverInterface.collectlastname(search)
+                );
+
+                outputlastname1.Text = Result;
+
             }
             catch (Exception ex)
             {
@@ -123,6 +139,11 @@ namespace AsyncClient
                     MessageBoxButton.OK,
                     MessageBoxImage.Error
                 );
+            }
+            finally
+            {
+                SearchButtonClick.IsEnabled = false;
+
             }
         }
     }
