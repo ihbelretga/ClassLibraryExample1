@@ -11,14 +11,14 @@ namespace BusinessTier
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the server");
+            Console.WriteLine("Welcome to the Business Server");
             ServiceHost BusinessHost;
 
             NetTcpBinding binding = new NetTcpBinding();
             BusinessHost = new ServiceHost(typeof(BusinessServer));
             BusinessHost.AddServiceEndpoint(typeof(BusinessServerInterface), binding, "net.tcp://localhost:8200/BusinessServer");
             BusinessHost.Open();
-            Console.WriteLine("System Online");
+            Console.WriteLine("System Online - Operational");
             Console.ReadLine();
             BusinessHost.Close();
         }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BusinessTier; 
+using Server1;
+using Server1.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -14,9 +17,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Server1;
-using Server1.Services;
-using BusinessTier; 
 
 namespace Client
 {
@@ -71,14 +71,39 @@ namespace Client
         private void Search_Button_Click(object sender, RoutedEventArgs e)
         {
             String entername= "input"; 
+            inputhere.IsReadOnly = true;
+            getlastnametextbox.IsReadOnly = true;
+            First_name.IsReadOnly = true;
+            Last_Name.IsReadOnly = true;
+            AcctNo.IsReadOnly = true;
+            Balance.IsReadOnly = true;
+            Total_Items.IsReadOnly = true;
+            Index_.IsReadOnly = true;
+            SearchButtonClick.IsEnabled = false;
+            GoButtonCLick.IsEnabled = false;
+            ProgressBar.IsIndeterminate = true; 
+
             try
             {
-                inputhere.Text = entername; 
+                entername = inputhere.Text; 
                 getlastnametextbox.Text = server.collectlastname(entername);
             }
             catch (NullReferenceException ex)
             {
                 MessageBox.Show( ex.Message ); 
+            }
+
+         // if (String.IsNullOrEmpty(getlastnametextbox.Text) != true)
+          //{
+          //    ProgressBar.Value = ProgressBar.Maximum; 
+         // }
+        }
+
+        private void Progress_Bar(object sender, RoutedEventArgs e)
+        {
+            if (SearchButtonClick.IsEnabled == false)
+            {
+                ProgressBar.IsIndeterminate = true; 
             }
         }
     }

@@ -14,14 +14,14 @@ namespace Server2
         static void Main(string[] args)
         {
             
-            Console.WriteLine("Welcome to the server");
+            Console.WriteLine("Welcome to the SYstem Server");
             ServiceHost Host;
 
             NetTcpBinding binding = new NetTcpBinding();
             Host = new ServiceHost(typeof(DataServer));
             Host.AddServiceEndpoint(typeof(DataServerInterface), binding, "net.tcp://localhost:8100/DataServer");
             Host.Open();
-            Console.WriteLine("System Online");
+            Console.WriteLine("System Online - Operational");
             Console.ReadLine();
             Host.Close();
             

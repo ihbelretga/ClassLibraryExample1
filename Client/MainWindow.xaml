@@ -9,7 +9,7 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="34,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="71"><Run Language="en-au" Text="Total items: "/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="34,65,0,0" TextWrapping="Wrap" Text="Index" VerticalAlignment="Top"/>
-        <Button Content="Go" HorizontalAlignment="Left" Margin="109,85,0,0" VerticalAlignment="Top" Width="58" Click="GoButton_Click"/>
+        <Button Content="Go" HorizontalAlignment="Left" Margin="109,85,0,0" VerticalAlignment="Top" Width="58" Click="GoButton_Click" Name="GoButtonCLick"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="19"><Run Language="en-au" Text="First name; "/><LineBreak/><Run Language="en-au"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="34,157,0,0" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="34,191,0,0" TextWrapping="Wrap" Text="AcctNo" VerticalAlignment="Top"/>
@@ -26,5 +26,6 @@
         <TextBox x:Name="inputhere" HorizontalAlignment="Left" Height="20" Margin="441,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="131"/>
         <Label Content="input string here " HorizontalAlignment="Left" Height="26" Margin="441,10,0,0" VerticalAlignment="Top" Width="103"/>
         <Button Content="search" HorizontalAlignment="Left" Height="20" Margin="590,40,0,0" VerticalAlignment="Top" Width="69" Click="Search_Button_Click" Name="SearchButtonClick"/>
+        <ProgressBar Name="ProgressBar" HorizontalAlignment="Left" Height="64" Margin="309,308,0,0" VerticalAlignment="Top" Width="235" RenderTransformOrigin="0.125,0.496" MouseDoubleClick="Progress_Bar"/>
     </Grid>
 </Window>
